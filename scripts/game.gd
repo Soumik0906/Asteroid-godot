@@ -4,6 +4,7 @@ extends Node2D
 @onready var asteroids: Node = $Asteroids
 @onready var hud: Control = $UI/HUD
 @onready var game_over_screen: Control = $UI/GameOverScreen
+@onready var pause_screen: Control = $UI/PauseScreen
 @onready var player: CharacterBody2D = $Player
 @onready var player_spawn_pos: Node2D = $PlayerSpawnPos
 
@@ -32,7 +33,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
-
+		
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = true
+		pause_screen.visible = true
+		
 
 func _on_player_laser_shot(laser: Variant) -> void:
 	lasers.add_child(laser)
