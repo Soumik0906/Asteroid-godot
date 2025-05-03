@@ -14,7 +14,6 @@ var laser_scene = preload("res://scenes/laser.tscn")
 var can_shoot = true
 
 func _process(delta: float) -> void:
-	
 	if can_shoot and Input.is_action_pressed("shoot"):
 		can_shoot = false
 		shoot_laser()
@@ -43,13 +42,11 @@ func _physics_process(delta: float) -> void:
 	
 	# Boundary condition of spaceship
 	var screen_size := get_viewport_rect().size
-	
 	# Y axis boundary
 	if global_position.y < 0:
 		global_position.y = screen_size.y
 	elif global_position.y > screen_size.y:
 		global_position.y = 0
-	
 	# X axis boundary
 	if global_position.x < 0:
 		global_position.x = screen_size.x
