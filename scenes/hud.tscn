@@ -21,15 +21,14 @@ offset_left = 40.0
 offset_top = 21.0
 offset_right = 400.0
 offset_bottom = 93.0
-text = "SCORE: 9999"
+text = "SCORE: 999"
 label_settings = SubResource("LabelSettings_ahhtf")
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Lives" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 94.0
-offset_top = 93.0
-offset_right = 206.0
-offset_bottom = 168.0
+offset_left = 40.0
+offset_top = 105.0
+offset_right = 152.0
+offset_bottom = 180.0
 scale = Vector2(0.5, 0.5)

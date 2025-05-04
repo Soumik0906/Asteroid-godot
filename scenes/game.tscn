@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dn6dac3too52q"]
+[gd_scene load_steps=14 format=3 uid="uid://dn6dac3too52q"]
 
 [ext_resource type="PackedScene" uid="uid://dhstep1us53l7" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://drtntttm1107o" path="res://scripts/game.gd" id="1_yqjtg"]
@@ -10,6 +10,37 @@
 [ext_resource type="AudioStream" uid="uid://0jrur2lqie6s" path="res://assets/sfx_laser1.ogg" id="8_vtaks"]
 [ext_resource type="AudioStream" uid="uid://dl8bc4r8wlxjc" path="res://assets/asteroid_hit.wav" id="9_kvpfn"]
 [ext_resource type="AudioStream" uid="uid://r0vvouu8324o" path="res://assets/hit.wav" id="10_dinhu"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vtaks"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 540, 1)
+spread = 0.0
+initial_velocity_min = -10.0
+initial_velocity_max = -10.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kvpfn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 540, 1)
+spread = 0.0
+initial_velocity_min = -25.0
+initial_velocity_max = -25.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dinhu"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 540, 1)
+spread = 0.0
+initial_velocity_min = -35.0
+initial_velocity_max = -35.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -23,6 +54,32 @@ visible = false
 
 [node name="PauseScreen" parent="UI" instance=ExtResource("4_p57ef")]
 visible = false
+
+[node name="BackgroundStarFields" type="Node2D" parent="."]
+
+[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -100
+position = Vector2(1954, 540)
+amount = 1500
+lifetime = 2000.0
+preprocess = 2200.0
+process_material = SubResource("ParticleProcessMaterial_vtaks")
+
+[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -95
+position = Vector2(1954, 540)
+amount = 500
+lifetime = 2000.0
+preprocess = 2200.0
+process_material = SubResource("ParticleProcessMaterial_kvpfn")
+
+[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -90
+position = Vector2(1954, 540)
+amount = 75
+lifetime = 2000.0
+preprocess = 2200.0
+process_material = SubResource("ParticleProcessMaterial_dinhu")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(960, 540)
